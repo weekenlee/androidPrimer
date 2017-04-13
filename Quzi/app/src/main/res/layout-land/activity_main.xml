@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/question_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello World!"
+        android:layout_gravity="center_horizontal"/>
+
+    <android.support.v7.widget.FitWindowsLinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:orientation="vertical">
+
+    <android.support.v7.widget.FitWindowsLinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/true_button"
+            android:layout_height="wrap_content"
+            android:text="@string/choosetrue"
+            android:layout_width="wrap_content" />
+        <Button
+            android:id="@+id/false_button"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/choosefalse"/>
+
+    </android.support.v7.widget.FitWindowsLinearLayout>
+
+    <android.support.v7.widget.FitWindowsLinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/prev_button"
+            android:layout_height="wrap_content"
+            android:text="@string/chooseprev"
+            android:layout_width="wrap_content" />
+        <Button
+            android:id="@+id/next_button"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/choosenext"/>
+
+    </android.support.v7.widget.FitWindowsLinearLayout>
+
+    <Button
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="@string/cheate"/>
+    </android.support.v7.widget.FitWindowsLinearLayout>
+
+</FrameLayout>

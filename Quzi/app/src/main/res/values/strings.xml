@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Quzi</string>
+    <string name="choosetrue">true</string>
+    <string name="choosefalse">false</string>
+    <string name="choosenext"> 》》》 </string>
+    <string name="chooseprev"> 《《《 </string>
+    <string name="correct_toast">correct!</string>
+    <string name="incorrect_toast">incorrect!</string>
+    <string name="question1">question1!</string>
+    <string name="question2">question2!</string>
+    <string name="question3">question3!</string>
+
+
+    <string name="waring">警告!你真的要看答案么</string>
+    <string name="answer"></string>
+    <string name="showanswer">显示答案</string>
+    <string name="wasCheat">作弊啦</string>
+
+    <string name="cheate">作弊</string>
+
+</resources>
