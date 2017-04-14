@@ -16,7 +16,7 @@ public class CrimeActivity extends FragmentActivity {
         FragmentManager fm = getSupportFragmentManager();
         Fragment fragment = fm.findFragmentById(R.id.fragment_container);
 
-        if (fm != null) {
+        if (fragment == null) {
             fragment = new CrimeFragment();
             fm.beginTransaction()
                     .add(R.id.fragment_container, fragment)
