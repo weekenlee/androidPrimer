@@ -13,6 +13,7 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Created by liweijian on 2017/4/14.
@@ -21,7 +22,9 @@ import java.util.List;
 class CrimeListFragment extends Fragment {
     private RecyclerView mCrimeRecyclerView;
     private CrimeAdapter mAdapter;
-
+    private static final int REQUEST_CRIME = 1;
+    private UUID mNeedRefreshCrimeId;
+    private int mCurrentPostion;
 
 
     private class CrimeHolder extends RecyclerView.ViewHolder
@@ -32,6 +35,7 @@ class CrimeListFragment extends Fragment {
         private CheckBox mSolvedCheckBox;
 
         private Crime mCrime;
+
 
         public void bindCrime(Crime crime) {
             mCrime = crime;
@@ -52,11 +56,21 @@ class CrimeListFragment extends Fragment {
 
         @Override
         public void onClick(View v) {
+            mCurrentPostion = getAdapterPosition();
             Intent intent = CrimeActivity.newIntent(getActivity(), mCrime.getmId());
-            startActivity(intent);
+            startActivityForResult(intent,REQUEST_CRIME);
         }
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_CRIME) {
+            if (data != null) {
+                UUID crimeId = (UUID) data.getSerializableExtra(CrimeFragment.ARG_CRIME_ID);
+                mNeedRefreshCrimeId = crimeId;
+            }
+        }
+    }
 
     private class CrimeAdapter extends RecyclerView.Adapter<CrimeHolder> {
         private List<Crime> mCrimes;
@@ -111,7 +125,7 @@ class CrimeListFragment extends Fragment {
             mAdapter = new CrimeAdapter(crimes);
             mCrimeRecyclerView.setAdapter(mAdapter);
         }else {
-            mAdapter.notifyDataSetChanged();
+            mAdapter.notifyItemChanged(mCurrentPostion);
         }
 
     }

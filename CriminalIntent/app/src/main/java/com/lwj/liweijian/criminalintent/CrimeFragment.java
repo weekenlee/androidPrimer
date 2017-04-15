@@ -1,5 +1,7 @@
 package com.lwj.liweijian.criminalintent;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -28,13 +30,30 @@ public class CrimeFragment extends Fragment {
     private CheckBox mSolvedCheckBox;
 
     private static final String KEY_TITLE = "com.lwj.liweijian.criminalintent.crimefragment.title";
+    public static final String ARG_CRIME_ID = "crime_id";
+
+    public static CrimeFragment newInstance(UUID crimeId) {
+        Bundle args = new Bundle();
+        args.putSerializable(ARG_CRIME_ID, crimeId);
+
+        CrimeFragment fragment = new CrimeFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mCrime = new Crime();
-        UUID crimeId = (UUID) getActivity().getIntent().getSerializableExtra(CrimeActivity.EXTRA_CRIME_ID);
+        UUID crimeId = (UUID) getArguments().getSerializable(ARG_CRIME_ID);
         mCrime = CrimeLab.get(getActivity()).getCrime(crimeId);
+    }
+
+    public void returnResult (UUID crimeId) {
+        Intent data = new Intent();
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(ARG_CRIME_ID, crimeId);
+        data.putExtras(bundle);
+        getActivity().setResult(Activity.RESULT_OK, data);
     }
 
     @Override
@@ -58,6 +77,7 @@ public class CrimeFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 mCrime.setmTitle(s.toString());
+                returnResult(mCrime.getmId());
                 Toast.makeText(getActivity(),mCrime.getmTitle(),Toast.LENGTH_SHORT).show();
             }
 
